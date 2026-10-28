@@ -48,7 +48,7 @@ export default function Header({
             </div>
           </div>
 
-          {/* Action Toolbar */}
+          {/* Action Toolbar & User Profile */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             {/* Hidden file input for JSON import */}
             <input 
@@ -63,7 +63,7 @@ export default function Header({
             <button
               onClick={onExport}
               title="Export all projects as JSON"
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 rounded-xl shadow-xs transition-all"
+              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 rounded-xl shadow-xs transition-all cursor-pointer"
             >
               <Download className="w-4 h-4 text-slate-500" />
               <span>Export</span>
@@ -73,7 +73,7 @@ export default function Header({
             <button
               onClick={() => fileInputRef.current?.click()}
               title="Import projects from JSON file"
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 rounded-xl shadow-xs transition-all"
+              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 rounded-xl shadow-xs transition-all cursor-pointer"
             >
               <Upload className="w-4 h-4 text-slate-500" />
               <span>Import</span>
@@ -83,7 +83,7 @@ export default function Header({
             <button
               onClick={onResetDefaults}
               title="Reset to default mock projects"
-              className="inline-flex items-center gap-1.5 px-2.5 py-2 text-xs font-medium text-slate-500 hover:text-slate-800 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl transition-all"
+              className="inline-flex items-center gap-1.5 px-2.5 py-2 text-xs font-medium text-slate-500 hover:text-slate-800 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl transition-all cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Reset</span>
@@ -97,6 +97,33 @@ export default function Header({
               <Plus className="w-4 h-4" />
               <span>New Project</span>
             </button>
+
+            {/* User Profile Badge */}
+            <div className="flex items-center gap-2.5 pl-2 sm:pl-3 border-l border-slate-200 ml-1">
+              <div className="relative">
+                {/* Avatar with gradient & initials */}
+                <div 
+                  className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-sky-500 flex items-center justify-center text-white text-xs font-bold shadow-xs select-none"
+                  title="Owner: Anand Mohandas"
+                >
+                  AM
+                </div>
+                {/* Online status indicator dot */}
+                <span 
+                  className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full" 
+                  title="Active"
+                />
+              </div>
+              <div className="hidden sm:block text-left">
+                <div className="text-xs font-bold text-slate-800 leading-tight">
+                  Anand Mohandas
+                </div>
+                <div className="text-[10px] font-medium text-slate-400">
+                  Project Owner
+                </div>
+              </div>
+            </div>
+
           </div>
 
         </div>
