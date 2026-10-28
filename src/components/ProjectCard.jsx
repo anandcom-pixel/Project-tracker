@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { STATUS_CONFIG } from '../data/initialProjects';
 
-export default function ProjectCard({ project, onEdit, onDelete, onStatusChange }) {
+export default function ProjectCard({ project, onEdit, onDelete, onStatusChange, onViewDetails }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isStatusMenuOpen, setIsStatusMenuOpen] = useState(false);
 
@@ -108,9 +108,16 @@ export default function ProjectCard({ project, onEdit, onDelete, onStatusChange 
 
         </div>
 
-        {/* Project Title */}
-        <h3 className="text-lg font-bold text-slate-900 tracking-tight group-hover:text-blue-600 transition-colors">
-          {project.name}
+        {/* Project Title (Clickable) */}
+        <h3 className="text-lg font-bold tracking-tight">
+          <button
+            type="button"
+            onClick={() => onViewDetails && onViewDetails(project)}
+            className="text-left font-bold text-blue-600 hover:text-blue-800 hover:underline cursor-pointer transition-colors block"
+            title={`View details for ${project.name}`}
+          >
+            {project.name}
+          </button>
         </h3>
 
         {/* Description */}

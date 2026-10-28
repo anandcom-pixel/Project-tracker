@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { STATUS_CONFIG } from '../data/initialProjects';
 
-export default function ProjectTable({ projects, onEdit, onDelete, onStatusChange }) {
+export default function ProjectTable({ projects, onEdit, onDelete, onStatusChange, onViewDetails }) {
   const [expandedRows, setExpandedRows] = useState({});
   const [activeStatusMenuId, setActiveStatusMenuId] = useState(null);
 
@@ -67,8 +67,15 @@ export default function ProjectTable({ projects, onEdit, onDelete, onStatusChang
                   <tr className="hover:bg-slate-50/70 transition-colors">
                     {/* Project Name & Desc */}
                     <td className="py-4 px-4 sm:px-6">
-                      <div className="font-bold text-slate-900">
-                        {project.name}
+                      <div>
+                        <button
+                          type="button"
+                          onClick={() => onViewDetails && onViewDetails(project)}
+                          className="font-bold text-blue-600 hover:text-blue-800 hover:underline text-left cursor-pointer transition-colors block"
+                          title={`View details for ${project.name}`}
+                        >
+                          {project.name}
+                        </button>
                       </div>
                       <div className="text-xs text-slate-500 max-w-xs truncate mt-0.5">
                         {project.description}

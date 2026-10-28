@@ -5,6 +5,7 @@ import FilterBar from './components/FilterBar';
 import ProjectCard from './components/ProjectCard';
 import ProjectTable from './components/ProjectTable';
 import ProjectModal from './components/ProjectModal';
+import ProjectDetailsModal from './components/ProjectDetailsModal';
 import DeleteConfirmModal from './components/DeleteConfirmModal';
 import Toast from './components/Toast';
 import { 
@@ -29,6 +30,7 @@ export default function App() {
   // Modals & Feedback
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [projectToEdit, setProjectToEdit] = useState(null);
+  const [projectForDetails, setProjectForDetails] = useState(null);
   const [projectToDelete, setProjectToDelete] = useState(null);
   const [toast, setToast] = useState(null);
 
@@ -245,6 +247,7 @@ export default function App() {
                   onEdit={handleEditClick}
                   onDelete={(p) => setProjectToDelete(p)}
                   onStatusChange={handleStatusChange}
+                  onViewDetails={(p) => setProjectForDetails(p)}
                 />
               ))}
             </div>
@@ -254,6 +257,7 @@ export default function App() {
               onEdit={handleEditClick}
               onDelete={(p) => setProjectToDelete(p)}
               onStatusChange={handleStatusChange}
+              onViewDetails={(p) => setProjectForDetails(p)}
             />
           )
         ) : (
@@ -316,6 +320,17 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Project Details Modal */}
+      <ProjectDetailsModal
+        isOpen={Boolean(projectForDetails)}
+        project={projectForDetails}
+        onClose={() => setProjectForDetails(null)}
+        onEdit={(p) => {
+          setProjectForDetails(null);
+          handleEditClick(p);
+        }}
+      />
 
       {/* Add / Edit Project Modal */}
       <ProjectModal
