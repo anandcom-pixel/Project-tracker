@@ -5,8 +5,8 @@ const THEME_KEY = 'project_tracker_theme';
 const PROFILE_KEY = 'project_tracker_profile_v1';
 
 export const DEFAULT_PROFILE = {
-  name: 'Anand Mohandas',
-  role: 'Project Owner',
+  name: 'Project owner',
+  role: 'Workspace Lead',
   avatarType: 'initials',
   colorGradient: 'from-blue-600 via-indigo-600 to-sky-500'
 };
@@ -121,12 +121,17 @@ export function loadStoredProfile() {
     }
     const parsed = JSON.parse(raw);
     if (parsed && typeof parsed.name === 'string') {
-      return {
-        name: parsed.name.trim() || DEFAULT_PROFILE.name,
+      const resolvedName = parsed.name.trim() === 'Anand Mohandas' ? 'Project owner' : (parsed.name.trim() || DEFAULT_PROFILE.name);
+      const updated = {
+        name: resolvedName,
         role: parsed.role?.trim() || DEFAULT_PROFILE.role,
         avatarType: parsed.avatarType || DEFAULT_PROFILE.avatarType,
         colorGradient: parsed.colorGradient || DEFAULT_PROFILE.colorGradient
       };
+      if (parsed.name.trim() === 'Anand Mohandas') {
+        saveStoredProfile(updated);
+      }
+      return updated;
     }
     return DEFAULT_PROFILE;
   } catch (err) {

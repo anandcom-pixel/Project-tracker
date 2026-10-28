@@ -104,7 +104,7 @@ function ProfileFormDialog({ onClose, onSave, profile }) {
                 setName(e.target.value);
                 if (error) setError('');
               }}
-              placeholder="e.g. Anand Mohandas"
+              placeholder="e.g. Project owner"
               className={`w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 border ${error ? 'border-rose-500 ring-1 ring-rose-500' : 'border-slate-200'} text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all`}
             />
             {error && <p className="mt-1 text-xs text-rose-500">{error}</p>}

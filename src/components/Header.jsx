@@ -26,8 +26,8 @@ export default function Header({
     }
   };
 
-  const displayName = profile?.name || 'Anand Mohandas';
-  const displayRole = profile?.role || 'Project Owner';
+  const displayName = profile?.name || 'Project owner';
+  const displayRole = profile?.role || 'Workspace Lead';
   const avatarType = profile?.avatarType || 'initials';
   const colorGradient = profile?.colorGradient || 'from-blue-600 via-indigo-600 to-sky-500';
 
