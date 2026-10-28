@@ -6,19 +6,23 @@ import ProjectCard from './components/ProjectCard';
 import ProjectTable from './components/ProjectTable';
 import ProjectModal from './components/ProjectModal';
 import ProjectDetailsModal from './components/ProjectDetailsModal';
+import EditProfileModal from './components/EditProfileModal';
 import DeleteConfirmModal from './components/DeleteConfirmModal';
 import Toast from './components/Toast';
 import { 
   loadStoredProjects, 
   saveProjects, 
   exportProjectsToJSON, 
-  parseAndValidateProjectsJSON
+  parseAndValidateProjectsJSON,
+  loadStoredProfile,
+  saveStoredProfile
 } from './utils/storage';
 import { INITIAL_PROJECTS } from './data/initialProjects';
 import { FolderSearch, Plus } from 'lucide-react';
 
 export default function App() {
   const [projects, setProjects] = useState(() => loadStoredProjects());
+  const [profile, setProfile] = useState(() => loadStoredProfile());
   
   // Filtering & View state
   const [statusFilter, setStatusFilter] = useState('All');
@@ -29,10 +33,19 @@ export default function App() {
 
   // Modals & Feedback
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [projectToEdit, setProjectToEdit] = useState(null);
   const [projectForDetails, setProjectForDetails] = useState(null);
   const [projectToDelete, setProjectToDelete] = useState(null);
   const [toast, setToast] = useState(null);
+
+  // Profile save handler
+  const handleSaveProfile = (updatedProfile) => {
+    setProfile(updatedProfile);
+    saveStoredProfile(updatedProfile);
+    setIsProfileModalOpen(false);
+    showToast(`Profile updated for "${updatedProfile.name}"`, 'success');
+  };
 
   // Persist projects whenever changed
   const updateProjectsAndPersist = (updatedList) => {
@@ -193,6 +206,8 @@ export default function App() {
         onExport={handleExportJSON}
         onImportFile={handleImportFile}
         onResetDefaults={handleResetDefaults}
+        profile={profile}
+        onOpenEditProfile={() => setIsProfileModalOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -330,6 +345,14 @@ export default function App() {
           setProjectForDetails(null);
           handleEditClick(p);
         }}
+      />
+
+      {/* Edit Profile Modal */}
+      <EditProfileModal
+        isOpen={isProfileModalOpen}
+        onClose={() => setIsProfileModalOpen(false)}
+        onSave={handleSaveProfile}
+        profile={profile}
       />
 
       {/* Add / Edit Project Modal */}

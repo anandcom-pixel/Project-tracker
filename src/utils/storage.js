@@ -2,6 +2,14 @@ import { INITIAL_PROJECTS } from '../data/initialProjects';
 
 const STORAGE_KEY = 'project_tracker_data_v1';
 const THEME_KEY = 'project_tracker_theme';
+const PROFILE_KEY = 'project_tracker_profile_v1';
+
+export const DEFAULT_PROFILE = {
+  name: 'Anand Mohandas',
+  role: 'Project Owner',
+  avatarType: 'initials',
+  colorGradient: 'from-blue-600 via-indigo-600 to-sky-500'
+};
 
 export function loadStoredProjects() {
   try {
@@ -87,11 +95,10 @@ export function loadStoredTheme() {
     if (saved === 'dark' || saved === 'light') {
       return saved;
     }
-    // Default to system preference or dark
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
-    return 'dark'; // modern dark default
+    return 'dark';
   } catch {
     return 'dark';
   }
@@ -102,5 +109,36 @@ export function saveStoredTheme(theme) {
     localStorage.setItem(THEME_KEY, theme);
   } catch (e) {
     console.error('Error saving theme:', e);
+  }
+}
+
+export function loadStoredProfile() {
+  try {
+    const raw = localStorage.getItem(PROFILE_KEY);
+    if (!raw) {
+      saveStoredProfile(DEFAULT_PROFILE);
+      return DEFAULT_PROFILE;
+    }
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed.name === 'string') {
+      return {
+        name: parsed.name.trim() || DEFAULT_PROFILE.name,
+        role: parsed.role?.trim() || DEFAULT_PROFILE.role,
+        avatarType: parsed.avatarType || DEFAULT_PROFILE.avatarType,
+        colorGradient: parsed.colorGradient || DEFAULT_PROFILE.colorGradient
+      };
+    }
+    return DEFAULT_PROFILE;
+  } catch (err) {
+    console.error('Failed to load profile:', err);
+    return DEFAULT_PROFILE;
+  }
+}
+
+export function saveStoredProfile(profile) {
+  try {
+    localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+  } catch (err) {
+    console.error('Failed to save profile:', err);
   }
 }

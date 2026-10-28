@@ -6,12 +6,15 @@ import {
   Upload, 
   RotateCcw
 } from 'lucide-react';
+import { renderAvatarContent } from '../utils/profile';
 
 export default function Header({ 
   onOpenAddModal, 
   onExport, 
   onImportFile, 
-  onResetDefaults 
+  onResetDefaults,
+  profile,
+  onOpenEditProfile
 }) {
   const fileInputRef = useRef(null);
 
@@ -22,6 +25,11 @@ export default function Header({
       e.target.value = '';
     }
   };
+
+  const displayName = profile?.name || 'Anand Mohandas';
+  const displayRole = profile?.role || 'Project Owner';
+  const avatarType = profile?.avatarType || 'initials';
+  const colorGradient = profile?.colorGradient || 'from-blue-600 via-indigo-600 to-sky-500';
 
   return (
     <header className="sticky top-0 z-30 bg-white border-b border-slate-200 shadow-md transition-colors duration-200">
@@ -98,15 +106,18 @@ export default function Header({
               <span>New Project</span>
             </button>
 
-            {/* User Profile Badge */}
-            <div className="flex items-center gap-2.5 pl-2 sm:pl-3 border-l border-slate-200 ml-1">
+            {/* Customizable User Profile Badge Button */}
+            <button
+              onClick={onOpenEditProfile}
+              title="Click to customize your profile"
+              className="group flex items-center gap-2.5 pl-2 sm:pl-3 border-l border-slate-200 ml-1 hover:opacity-95 transition-all cursor-pointer p-1 rounded-xl hover:bg-slate-50 text-left"
+            >
               <div className="relative">
-                {/* Avatar with gradient & initials */}
+                {/* Avatar with gradient & custom icon/initials */}
                 <div 
-                  className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-sky-500 flex items-center justify-center text-white text-xs font-bold shadow-xs select-none"
-                  title="Owner: Anand Mohandas"
+                  className={`w-9 h-9 rounded-full bg-gradient-to-tr ${colorGradient} flex items-center justify-center text-white shadow-xs group-hover:ring-2 group-hover:ring-blue-500/40 transition-all`}
                 >
-                  AM
+                  {renderAvatarContent(avatarType, displayName)}
                 </div>
                 {/* Online status indicator dot */}
                 <span 
@@ -115,14 +126,14 @@ export default function Header({
                 />
               </div>
               <div className="hidden sm:block text-left">
-                <div className="text-xs font-bold text-slate-800 leading-tight">
-                  Anand Mohandas
+                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-tight">
+                  {displayName}
                 </div>
-                <div className="text-[10px] font-medium text-slate-400">
-                  Project Owner
+                <div className="text-[10px] font-medium text-slate-500">
+                  {displayRole}
                 </div>
               </div>
-            </div>
+            </button>
 
           </div>
 
