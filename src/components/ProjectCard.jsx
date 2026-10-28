@@ -46,7 +46,7 @@ export default function ProjectCard({ project, onEdit, onDelete, onStatusChange 
     : [];
 
   return (
-    <div className={`bg-white rounded-2xl border border-slate-200/90 hover:border-blue-300 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between overflow-visible relative group`}>
+    <div className="bg-white rounded-2xl border border-slate-100 shadow-md hover:shadow-xl transition-all duration-200 flex flex-col justify-between overflow-visible relative group">
       
       {/* Top Header Section */}
       <div className="p-5 pb-3">
@@ -134,7 +134,7 @@ export default function ProjectCard({ project, onEdit, onDelete, onStatusChange 
       </div>
 
       {/* Expandable Remaining Work Accordion */}
-      <div className="px-5 py-3 border-t border-slate-100 bg-sky-50/30">
+      <div className="px-5 py-3 border-t border-slate-100 bg-slate-50/70">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="w-full flex items-center justify-between text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors py-1 cursor-pointer"

@@ -40,10 +40,10 @@ export default function ProjectTable({ projects, onEdit, onDelete, onStatusChang
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-blue-100/90 shadow-xs overflow-hidden">
+    <div className="bg-white rounded-2xl border border-slate-100 shadow-md overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs sm:text-sm">
-          <thead className="bg-blue-50/60 border-b border-blue-100 text-slate-600 font-bold uppercase tracking-wider text-[11px]">
+          <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase tracking-wider text-[11px]">
             <tr>
               <th className="py-3.5 px-4 sm:px-6">Project</th>
               <th className="py-3.5 px-4">Category</th>
@@ -64,7 +64,7 @@ export default function ProjectTable({ projects, onEdit, onDelete, onStatusChang
 
               return (
                 <React.Fragment key={project.id}>
-                  <tr className="hover:bg-blue-50/25 transition-colors">
+                  <tr className="hover:bg-slate-50/70 transition-colors">
                     {/* Project Name & Desc */}
                     <td className="py-4 px-4 sm:px-6">
                       <div className="font-bold text-slate-900">
@@ -193,8 +193,8 @@ export default function ProjectTable({ projects, onEdit, onDelete, onStatusChang
 
                   {/* Expanded Remaining Work Row */}
                   {isExpanded && (
-                    <tr className="bg-sky-50/40">
-                      <td colSpan={7} className="py-3 px-6 sm:px-8 border-t border-b border-blue-100/60">
+                    <tr className="bg-slate-50/90">
+                      <td colSpan={7} className="py-3 px-6 sm:px-8 border-t border-b border-slate-200">
                         <div className="text-xs">
                           <strong className="text-slate-800 block mb-1.5 font-bold">
                             Remaining Work & Next Milestones:

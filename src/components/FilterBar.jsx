@@ -29,7 +29,7 @@ export default function FilterBar({
   const hasActiveFilters = searchQuery.trim() !== '' || statusFilter !== 'All' || categoryFilter !== 'All';
 
   return (
-    <div className="bg-white p-4 rounded-2xl border border-blue-100/90 shadow-xs space-y-4">
+    <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-md space-y-4">
       
       {/* Top row: Search input + View switcher */}
       <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
@@ -41,7 +41,7 @@ export default function FilterBar({
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search by project name, description, or tech stack (e.g. React, Kotlin)..."
-            className="w-full pl-10 pr-9 py-2.5 text-sm rounded-xl bg-sky-50/40 border border-slate-200 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+            className="w-full pl-10 pr-9 py-2.5 text-sm rounded-xl bg-slate-50 border border-slate-200 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
           />
           {searchQuery && (
             <button

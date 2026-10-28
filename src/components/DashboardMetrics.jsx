@@ -23,8 +23,8 @@ export default function DashboardMetrics({ projects, statusFilter, onSelectStatu
       sublabel: `${completionRate}% overall completion`,
       icon: <FolderKanban className="w-5 h-5 text-blue-600" />,
       bg: 'bg-white',
-      activeRing: 'ring-2 ring-blue-600 shadow-blue-500/10 border-blue-600',
-      border: 'border-blue-100/80',
+      activeRing: 'ring-3 ring-white shadow-lg border-blue-600',
+      border: 'border-slate-100',
       iconBg: 'bg-blue-50 text-blue-700'
     },
     {
@@ -34,8 +34,8 @@ export default function DashboardMetrics({ projects, statusFilter, onSelectStatu
       sublabel: 'Shipped & deployed',
       icon: <CheckCircle2 className="w-5 h-5 text-emerald-600" />,
       bg: 'bg-white',
-      activeRing: 'ring-2 ring-emerald-600 shadow-emerald-500/10 border-emerald-600',
-      border: 'border-blue-100/80',
+      activeRing: 'ring-3 ring-white shadow-lg border-emerald-600',
+      border: 'border-slate-100',
       iconBg: 'bg-emerald-50 text-emerald-700'
     },
     {
@@ -45,8 +45,8 @@ export default function DashboardMetrics({ projects, statusFilter, onSelectStatu
       sublabel: 'Active development',
       icon: <Clock className="w-5 h-5 text-amber-600" />,
       bg: 'bg-white',
-      activeRing: 'ring-2 ring-amber-500 shadow-amber-500/10 border-amber-500',
-      border: 'border-blue-100/80',
+      activeRing: 'ring-3 ring-white shadow-lg border-amber-500',
+      border: 'border-slate-100',
       iconBg: 'bg-amber-50 text-amber-700'
     },
     {
@@ -56,8 +56,8 @@ export default function DashboardMetrics({ projects, statusFilter, onSelectStatu
       sublabel: 'Backlog / planned',
       icon: <CircleDot className="w-5 h-5 text-slate-500" />,
       bg: 'bg-white',
-      activeRing: 'ring-2 ring-slate-500 shadow-slate-500/10 border-slate-500',
-      border: 'border-blue-100/80',
+      activeRing: 'ring-3 ring-white shadow-lg border-slate-500',
+      border: 'border-slate-100',
       iconBg: 'bg-slate-100 text-slate-700'
     }
   ];
@@ -102,7 +102,7 @@ export default function DashboardMetrics({ projects, statusFilter, onSelectStatu
       </div>
 
       {/* Completion Progress Bar */}
-      <div className="bg-white p-4 rounded-2xl border border-blue-100/90 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-emerald-600" />
           <span className="text-xs font-bold text-slate-800">

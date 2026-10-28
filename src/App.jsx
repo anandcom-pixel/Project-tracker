@@ -183,7 +183,7 @@ export default function App() {
   }, [projects, statusFilter, categoryFilter, searchQuery, sortBy]);
 
   return (
-    <div className="min-h-screen bg-sky-50/70 text-slate-800 flex flex-col font-sans transition-colors duration-200">
+    <div className="min-h-screen bg-blue-600 text-slate-800 flex flex-col font-sans transition-colors duration-200">
       
       {/* Header Bar */}
       <Header
@@ -196,6 +196,18 @@ export default function App() {
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         
+        {/* Top Header Title on Blue Canvas */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 pb-1">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              Project Dashboard
+            </h2>
+            <p className="text-sm text-blue-100">
+              Manage development cycles, track progress & remaining work
+            </p>
+          </div>
+        </div>
+
         {/* Dashboard Overview Metrics */}
         <DashboardMetrics
           projects={projects}
@@ -246,7 +258,7 @@ export default function App() {
           )
         ) : (
           /* Empty Search / No Projects State */
-          <div className="bg-white rounded-3xl border border-blue-100 shadow-sm p-12 text-center max-w-md mx-auto my-8">
+          <div className="bg-white rounded-3xl border border-slate-100 shadow-xl p-12 text-center max-w-md mx-auto my-8">
             <div className="w-14 h-14 mx-auto rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 mb-4">
               <FolderSearch className="w-7 h-7" />
             </div>
@@ -290,14 +302,14 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-blue-100/80 bg-white/70 backdrop-blur-xs py-5 text-center text-xs text-slate-500">
+      <footer className="mt-auto border-t border-blue-500/40 bg-blue-700/60 backdrop-blur-xs py-5 text-center text-xs text-blue-100">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-slate-800">ProjectTracker</span>
+            <span className="font-bold text-white">ProjectTracker</span>
             <span>•</span>
-            <span>Light Soft-Blue Aesthetic</span>
+            <span>Rich Solid-Blue Theme</span>
           </div>
-          <div className="flex items-center gap-4 text-[11px] font-medium text-slate-500">
+          <div className="flex items-center gap-4 text-[11px] font-medium text-blue-200">
             <span>Local Storage Active</span>
             <span>•</span>
             <span>Vercel Ready</span>
